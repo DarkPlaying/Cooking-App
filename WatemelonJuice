@@ -1,0 +1,592 @@
+import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/flutter_flow_youtube_player.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+import 'watermelon_juice_model.dart';
+export 'watermelon_juice_model.dart';
+
+class WatermelonJuiceWidget extends StatefulWidget {
+  const WatermelonJuiceWidget({Key? key}) : super(key: key);
+
+  @override
+  _WatermelonJuiceWidgetState createState() => _WatermelonJuiceWidgetState();
+}
+
+class _WatermelonJuiceWidgetState extends State<WatermelonJuiceWidget>
+    with TickerProviderStateMixin {
+  late WatermelonJuiceModel _model;
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = {
+    'imageOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        ScaleEffect(
+          curve: Curves.easeInOut,
+          delay: 2000.ms,
+          duration: 1400.ms,
+          begin: Offset(0, 0),
+          end: Offset(1, 1),
+        ),
+      ],
+    ),
+    'rowOnPageLoadAnimation1': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 2000.ms,
+          duration: 1180.ms,
+          begin: Offset(-800, 0),
+          end: Offset(0, 0),
+        ),
+      ],
+    ),
+    'rowOnPageLoadAnimation2': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 2000.ms,
+          duration: 860.ms,
+          begin: Offset(400, 0),
+          end: Offset(0, 0),
+        ),
+      ],
+    ),
+    'containerOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 2000.ms,
+          duration: 1050.ms,
+          begin: Offset(0, 400),
+          end: Offset(0, 0),
+        ),
+      ],
+    ),
+    'stackOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 3000.ms,
+          duration: 600.ms,
+          begin: 0,
+          end: 1,
+        ),
+      ],
+    ),
+    'columnOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 670.ms,
+          duration: 600.ms,
+          begin: 0,
+          end: 1,
+        ),
+      ],
+    ),
+  };
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => WatermelonJuiceModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    _model.dispose();
+
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
+    context.watch<FFAppState>();
+
+    return YoutubeFullScreenWrapper(
+      child: Title(
+          title: 'WatermelonJuice',
+          color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
+          child: GestureDetector(
+            onTap: () => _model.unfocusNode.canRequestFocus
+                ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+                : FocusScope.of(context).unfocus(),
+            child: Scaffold(
+              key: scaffoldKey,
+              backgroundColor: Color(0xFFF1F4F8),
+              appBar: AppBar(
+                backgroundColor:
+                    FlutterFlowTheme.of(context).secondaryBackground,
+                automaticallyImplyLeading: false,
+                leading: FlutterFlowIconButton(
+                  borderColor: Colors.transparent,
+                  borderRadius: 30,
+                  borderWidth: 1,
+                  buttonSize: 60,
+                  icon: Icon(
+                    Icons.chevron_left,
+                    color: FlutterFlowTheme.of(context).primaryText,
+                    size: 40,
+                  ),
+                  onPressed: () async {
+                    context.safePop();
+                  },
+                ),
+                title: Text(
+                  'Recipe Page',
+                  style: FlutterFlowTheme.of(context).headlineMedium.override(
+                        fontFamily: 'Outfit',
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w600,
+                      ),
+                ),
+                actions: [
+                  FlutterFlowIconButton(
+                    borderColor:
+                        FlutterFlowTheme.of(context).secondaryBackground,
+                    borderRadius: 20,
+                    borderWidth: 1,
+                    buttonSize: 52,
+                    fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                    icon: Icon(
+                      Icons.favorite_sharp,
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      size: 24,
+                    ),
+                    onPressed: () {
+                      print('IconButton pressed ...');
+                    },
+                  ),
+                ],
+                centerTitle: true,
+                elevation: 2,
+              ),
+              body: SafeArea(
+                top: true,
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                  child: Container(
+                    width: 393,
+                    height: 764,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFEC33),
+                      borderRadius: BorderRadius.circular(40),
+                    ),
+                    child: SingleChildScrollView(
+                      controller: _model.columnController1,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(60),
+                              child: Image.asset(
+                                'assets/images/2PXM1ULozjUOnMKw7outMcI6zhgVChTJ48UVugGu.jpg',
+                                width: 371,
+                                height: 272,
+                                fit: BoxFit.fitWidth,
+                              ),
+                            ).animateOnPageLoad(
+                                animationsMap['imageOnPageLoadAnimation']!),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Icon(
+                                  Icons.access_time,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 40,
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 30, 0),
+                                  child: Text(
+                                    '1/2 Hour',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.star_purple500_rounded,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 50,
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 30, 0),
+                                  child: Text(
+                                    '4.5',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.favorite_sharp,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 40,
+                                ),
+                                Text(
+                                  'Like',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                ),
+                              ]
+                                  .divide(SizedBox(width: 0))
+                                  .addToStart(SizedBox(width: 20)),
+                            ).animateOnPageLoad(
+                                animationsMap['rowOnPageLoadAnimation1']!),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      30, 0, 0, 0),
+                                  child: Text(
+                                    'Duration',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w800,
+                                        ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      35, 0, 0, 0),
+                                  child: Text(
+                                    '  Rating',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      20, 0, 0, 0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await _model.columnController2?.animateTo(
+                                        0,
+                                        duration: Duration(milliseconds: 1000),
+                                        curve: Curves.ease,
+                                      );
+                                    },
+                                    child: Text(
+                                      '20k Likes',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                              ]
+                                  .divide(SizedBox(width: 10))
+                                  .around(SizedBox(width: 10)),
+                            ).animateOnPageLoad(
+                                animationsMap['rowOnPageLoadAnimation2']!),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                            child: Container(
+                              width: 373,
+                              height: 328,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment:
+                                        AlignmentDirectional(0.00, -1.00),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 10, 0, 0),
+                                      child: Text(
+                                        'Ingredients',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 40,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment:
+                                        AlignmentDirectional(-0.01, -0.68),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          20, 70, 0, 0),
+                                      child: Text(
+                                        'Watermelon - 4 cups (cubed, seeds removed)\nLime juice - 2 tablespoons (freshly squeezed)\nSugar or honey - 2-3 tablespoons (optional, adjust to taste)\nIce cubes - for serving (optional)\nMint leaves - for garnish (optional)',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 20,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ).animateOnPageLoad(
+                                  animationsMap['stackOnPageLoadAnimation']!),
+                            ).animateOnPageLoad(
+                                animationsMap['containerOnPageLoadAnimation']!),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                            child: Container(
+                              width: 356,
+                              height: 250,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment:
+                                        AlignmentDirectional(1.67, -1.03),
+                                    child: SingleChildScrollView(
+                                      primary: false,
+                                      controller: _model.columnController2,
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Align(
+                                            alignment: AlignmentDirectional(
+                                                0.06, -0.87),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 20, 0, 0),
+                                              child: Text(
+                                                'About The Iteam',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          fontSize: 30,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                              ),
+                                            ),
+                                          ),
+                                          Align(
+                                            alignment: AlignmentDirectional(
+                                                -0.02, -0.68),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(20, 10, 0, 0),
+                                              child: Text(
+                                                'Watermelon juice is a hydrating and invigorating beverage that embodies the natural sweetness and juiciness of this popular summer fruit. Here are some highlights about watermelon juice:',
+                                                textAlign: TextAlign.start,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          fontSize: 20,
+                                                        ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ).animateOnPageLoad(animationsMap[
+                                        'columnOnPageLoadAnimation']!),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                            child: Container(
+                              width: 344,
+                              height: 294,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment:
+                                        AlignmentDirectional(0.00, -1.00),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 20, 0, 0),
+                                      child: Text(
+                                        'Video To Make Recipe',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 26,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(0.16, 0.56),
+                                    child: FlutterFlowYoutubePlayer(
+                                      url:
+                                          'https://www.youtube.com/watch?v=3Z8iEYmAWA8&pp=ygUPV2F0ZXJtZWxvbkp1aWNl',
+                                      width: 306,
+                                      height: 212,
+                                      autoPlay: false,
+                                      looping: true,
+                                      mute: true,
+                                      showControls: true,
+                                      showFullScreen: true,
+                                      strictRelatedVideos: false,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                            child: Container(
+                              width: 421,
+                              height: 1214,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment:
+                                        AlignmentDirectional(0.00, -1.00),
+                                    child: Text(
+                                      'Steps To Make\nIngredent',
+                                      textAlign: TextAlign.center,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            fontSize: 40,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(0.00, 0.14),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          10, 50, 0, 0),
+                                      child: Text(
+                                        'Prepare Watermelon:\n\nBegin by cutting a ripe watermelon into cubes, ensuring all seeds are removed.\nBlend Watermelon:\n\nPlace the watermelon cubes in a blender. You can add a few ice cubes at this stage for a cooler and more refreshing juice. Blend until you achieve a smooth puree.\nStrain the Puree:\n\nTo eliminate any seeds or pulp, strain the watermelon puree through a fine-mesh strainer or cheesecloth into a pitcher. Gently press down on the puree to extract as much juice as possible.\nAdd Lime Juice:\n\nSqueeze two tablespoons of fresh lime juice into the pitcher. Lime juice enhances the flavor of the watermelon juice and adds a hint of tartness.\nAdjust Sweetness (Optional):\n\nTaste the watermelon juice. Depending on the sweetness of your watermelon and your preference, you can add 2-3 tablespoons of sugar or honey. Stir until the sweetener is fully dissolved.\nChill and Serve:\n\nRefrigerate the watermelon juice for a while to make it even more refreshing. When ready to serve, pour the juice into glasses filled with ice cubes. Garnish with fresh mint leaves if desired. Serve and enjoy your homemade watermelon juice!',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 20,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          )),
+    );
+  }
+}

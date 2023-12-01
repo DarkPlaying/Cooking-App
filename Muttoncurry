@@ -1,0 +1,592 @@
+import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/flutter_flow_youtube_player.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+import 'muttton_curry_model.dart';
+export 'muttton_curry_model.dart';
+
+class MutttonCurryWidget extends StatefulWidget {
+  const MutttonCurryWidget({Key? key}) : super(key: key);
+
+  @override
+  _MutttonCurryWidgetState createState() => _MutttonCurryWidgetState();
+}
+
+class _MutttonCurryWidgetState extends State<MutttonCurryWidget>
+    with TickerProviderStateMixin {
+  late MutttonCurryModel _model;
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = {
+    'imageOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        ScaleEffect(
+          curve: Curves.easeInOut,
+          delay: 2000.ms,
+          duration: 1400.ms,
+          begin: Offset(0, 0),
+          end: Offset(1, 1),
+        ),
+      ],
+    ),
+    'rowOnPageLoadAnimation1': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 2000.ms,
+          duration: 1180.ms,
+          begin: Offset(-800, 0),
+          end: Offset(0, 0),
+        ),
+      ],
+    ),
+    'rowOnPageLoadAnimation2': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 2000.ms,
+          duration: 860.ms,
+          begin: Offset(400, 0),
+          end: Offset(0, 0),
+        ),
+      ],
+    ),
+    'containerOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 2000.ms,
+          duration: 1050.ms,
+          begin: Offset(0, 400),
+          end: Offset(0, 0),
+        ),
+      ],
+    ),
+    'stackOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 3000.ms,
+          duration: 600.ms,
+          begin: 0,
+          end: 1,
+        ),
+      ],
+    ),
+    'columnOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 670.ms,
+          duration: 600.ms,
+          begin: 0,
+          end: 1,
+        ),
+      ],
+    ),
+  };
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => MutttonCurryModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    _model.dispose();
+
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
+    context.watch<FFAppState>();
+
+    return YoutubeFullScreenWrapper(
+      child: Title(
+          title: 'MutttonCurry',
+          color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
+          child: GestureDetector(
+            onTap: () => _model.unfocusNode.canRequestFocus
+                ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+                : FocusScope.of(context).unfocus(),
+            child: Scaffold(
+              key: scaffoldKey,
+              backgroundColor: Color(0xFFF1F4F8),
+              appBar: AppBar(
+                backgroundColor:
+                    FlutterFlowTheme.of(context).secondaryBackground,
+                automaticallyImplyLeading: false,
+                leading: FlutterFlowIconButton(
+                  borderColor: Colors.transparent,
+                  borderRadius: 30,
+                  borderWidth: 1,
+                  buttonSize: 60,
+                  icon: Icon(
+                    Icons.chevron_left,
+                    color: FlutterFlowTheme.of(context).primaryText,
+                    size: 40,
+                  ),
+                  onPressed: () async {
+                    context.safePop();
+                  },
+                ),
+                title: Text(
+                  'Recipe Page',
+                  style: FlutterFlowTheme.of(context).headlineMedium.override(
+                        fontFamily: 'Outfit',
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w600,
+                      ),
+                ),
+                actions: [
+                  FlutterFlowIconButton(
+                    borderColor:
+                        FlutterFlowTheme.of(context).secondaryBackground,
+                    borderRadius: 20,
+                    borderWidth: 1,
+                    buttonSize: 52,
+                    fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                    icon: Icon(
+                      Icons.favorite_sharp,
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      size: 24,
+                    ),
+                    onPressed: () {
+                      print('IconButton pressed ...');
+                    },
+                  ),
+                ],
+                centerTitle: true,
+                elevation: 2,
+              ),
+              body: SafeArea(
+                top: true,
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                  child: Container(
+                    width: 393,
+                    height: 764,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFEC33),
+                      borderRadius: BorderRadius.circular(40),
+                    ),
+                    child: SingleChildScrollView(
+                      controller: _model.columnController1,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(60),
+                              child: Image.asset(
+                                'assets/images/oqp7e4cg_mutton-curry_625x300_21_January_23.webp',
+                                width: 371,
+                                height: 272,
+                                fit: BoxFit.fitWidth,
+                              ),
+                            ).animateOnPageLoad(
+                                animationsMap['imageOnPageLoadAnimation']!),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Icon(
+                                  Icons.access_time,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 40,
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 30, 0),
+                                  child: Text(
+                                    '1/2 Hour',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.star_purple500_rounded,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 50,
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 30, 0),
+                                  child: Text(
+                                    '4.5',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.favorite_sharp,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 40,
+                                ),
+                                Text(
+                                  'Like',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                ),
+                              ]
+                                  .divide(SizedBox(width: 0))
+                                  .addToStart(SizedBox(width: 20)),
+                            ).animateOnPageLoad(
+                                animationsMap['rowOnPageLoadAnimation1']!),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      30, 0, 0, 0),
+                                  child: Text(
+                                    'Duration',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w800,
+                                        ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      35, 0, 0, 0),
+                                  child: Text(
+                                    '  Rating',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      20, 0, 0, 0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await _model.columnController2?.animateTo(
+                                        0,
+                                        duration: Duration(milliseconds: 1000),
+                                        curve: Curves.ease,
+                                      );
+                                    },
+                                    child: Text(
+                                      '20k Likes',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                              ]
+                                  .divide(SizedBox(width: 10))
+                                  .around(SizedBox(width: 10)),
+                            ).animateOnPageLoad(
+                                animationsMap['rowOnPageLoadAnimation2']!),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                            child: Container(
+                              width: 373,
+                              height: 862,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment:
+                                        AlignmentDirectional(0.00, -1.00),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 10, 0, 0),
+                                      child: Text(
+                                        'Ingredients',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 40,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment:
+                                        AlignmentDirectional(-0.01, -0.68),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          20, 70, 0, 0),
+                                      child: Text(
+                                        'For Marination:\n\n500g mutton pieces\n1 cup yogurt\n1 tablespoon ginger-garlic paste\n1/2 teaspoon red chili powder\n1/2 teaspoon turmeric powder\nSalt to taste\n\nFor Curry:\n\n2 onions, finely chopped\n2 tomatoes, finely chopped\n2-3 green chilies, slit\n2 tablespoons cooking oil\n1-inch cinnamon stick\n2-3 green cardamom pods\n2-3 cloves\n1/2 teaspoon cumin seeds\n1 bay leaf\n1/2 teaspoon red chili powder (adjust to taste)\n1 teaspoon coriander powder\n1/2 teaspoon turmeric powder\n1 teaspoon garam masala\nSalt to taste\nFresh coriander leaves, chopped (for garnish)\nFresh cream (optional, for garnish)',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 20,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ).animateOnPageLoad(
+                                  animationsMap['stackOnPageLoadAnimation']!),
+                            ).animateOnPageLoad(
+                                animationsMap['containerOnPageLoadAnimation']!),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                            child: Container(
+                              width: 356,
+                              height: 225,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment:
+                                        AlignmentDirectional(1.67, -1.03),
+                                    child: SingleChildScrollView(
+                                      primary: false,
+                                      controller: _model.columnController2,
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Align(
+                                            alignment: AlignmentDirectional(
+                                                0.06, -0.87),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 20, 0, 0),
+                                              child: Text(
+                                                'About The Iteam',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          fontSize: 30,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                              ),
+                                            ),
+                                          ),
+                                          Align(
+                                            alignment: AlignmentDirectional(
+                                                -0.02, -0.68),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(20, 10, 0, 0),
+                                              child: Text(
+                                                'Mutton Curry is a hearty and flavorful dish that\'s popular in many parts of the world. Here\'s a delicious recipe for making Mutton Curry:',
+                                                textAlign: TextAlign.start,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          fontSize: 20,
+                                                        ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ).animateOnPageLoad(animationsMap[
+                                        'columnOnPageLoadAnimation']!),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                            child: Container(
+                              width: 344,
+                              height: 294,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment:
+                                        AlignmentDirectional(0.00, -1.00),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 20, 0, 0),
+                                      child: Text(
+                                        'Video To Make Recipe',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 26,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(0.16, 0.56),
+                                    child: FlutterFlowYoutubePlayer(
+                                      url:
+                                          'https://www.youtube.com/watch?v=0jAPynjE5wQ&pp=ygUibXV0dG9uIGN1cnJ5IHJlY2lwZSBtYWRyYXMgc2FtYXlhbA%3D%3D',
+                                      width: 306,
+                                      height: 212,
+                                      autoPlay: false,
+                                      looping: true,
+                                      mute: true,
+                                      showControls: true,
+                                      showFullScreen: true,
+                                      strictRelatedVideos: false,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                            child: Container(
+                              width: 421,
+                              height: 1397,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment:
+                                        AlignmentDirectional(0.00, -1.00),
+                                    child: Text(
+                                      'Steps To Make\nIngredent',
+                                      textAlign: TextAlign.center,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            fontSize: 40,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(0.00, 0.14),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          10, 50, 0, 0),
+                                      child: Text(
+                                        'Marinate the Mutton:\n\nIn a large mixing bowl, combine the mutton pieces, yogurt, ginger-garlic paste, red chili powder, turmeric powder, and salt.\nMix well to coat the mutton evenly with the marinade. Allow it to marinate for at least 30 minutes.\nHeat Oil and Spices:\n\nIn a large, heavy-bottomed pan or pot, heat the cooking oil over medium heat.\nAdd cumin seeds, bay leaf, cinnamon stick, green cardamom pods, and cloves. Sauté for a minute or until they release their aroma.\nAdd Onions:\n\nAdd the finely chopped onions and sauté until they turn golden brown.\nAdd Tomatoes and Spices:\n\nAdd the finely chopped tomatoes and green chilies. Cook until the tomatoes become soft and the oil starts to separate from the mixture.\nAdd red chili powder, coriander powder, turmeric powder, garam masala, and salt. Sauté for a couple of minutes.\nCook the Mutton:\n\nAdd the marinated mutton and cook until it changes color and is partially cooked.\nSimmer the Curry:\n\nAdd about a cup of water and stir well. Cover the pot and let the curry simmer over low to medium heat for about 45-60 minutes, or until the mutton is tender and the gravy thickens.\nGarnish and Serve:\n\nGarnish with freshly chopped coriander leaves and, if desired, a drizzle of fresh cream.\nServe your delicious Mutton Curry with steamed rice or naan.',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 20,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          )),
+    );
+  }
+}

@@ -1,0 +1,593 @@
+import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/flutter_flow_youtube_player.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+import 'strawberry_cupcake_model.dart';
+export 'strawberry_cupcake_model.dart';
+
+class StrawberryCupcakeWidget extends StatefulWidget {
+  const StrawberryCupcakeWidget({Key? key}) : super(key: key);
+
+  @override
+  _StrawberryCupcakeWidgetState createState() =>
+      _StrawberryCupcakeWidgetState();
+}
+
+class _StrawberryCupcakeWidgetState extends State<StrawberryCupcakeWidget>
+    with TickerProviderStateMixin {
+  late StrawberryCupcakeModel _model;
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = {
+    'imageOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        ScaleEffect(
+          curve: Curves.easeInOut,
+          delay: 2000.ms,
+          duration: 1400.ms,
+          begin: Offset(0, 0),
+          end: Offset(1, 1),
+        ),
+      ],
+    ),
+    'rowOnPageLoadAnimation1': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 2000.ms,
+          duration: 1180.ms,
+          begin: Offset(-800, 0),
+          end: Offset(0, 0),
+        ),
+      ],
+    ),
+    'rowOnPageLoadAnimation2': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 2000.ms,
+          duration: 860.ms,
+          begin: Offset(400, 0),
+          end: Offset(0, 0),
+        ),
+      ],
+    ),
+    'containerOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 2000.ms,
+          duration: 1050.ms,
+          begin: Offset(0, 400),
+          end: Offset(0, 0),
+        ),
+      ],
+    ),
+    'stackOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 3000.ms,
+          duration: 600.ms,
+          begin: 0,
+          end: 1,
+        ),
+      ],
+    ),
+    'columnOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 670.ms,
+          duration: 600.ms,
+          begin: 0,
+          end: 1,
+        ),
+      ],
+    ),
+  };
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => StrawberryCupcakeModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    _model.dispose();
+
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
+    context.watch<FFAppState>();
+
+    return YoutubeFullScreenWrapper(
+      child: Title(
+          title: 'StrawberryCupcake',
+          color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
+          child: GestureDetector(
+            onTap: () => _model.unfocusNode.canRequestFocus
+                ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+                : FocusScope.of(context).unfocus(),
+            child: Scaffold(
+              key: scaffoldKey,
+              backgroundColor: Color(0xFFF1F4F8),
+              appBar: AppBar(
+                backgroundColor:
+                    FlutterFlowTheme.of(context).secondaryBackground,
+                automaticallyImplyLeading: false,
+                leading: FlutterFlowIconButton(
+                  borderColor: Colors.transparent,
+                  borderRadius: 30,
+                  borderWidth: 1,
+                  buttonSize: 60,
+                  icon: Icon(
+                    Icons.chevron_left,
+                    color: FlutterFlowTheme.of(context).primaryText,
+                    size: 40,
+                  ),
+                  onPressed: () async {
+                    context.safePop();
+                  },
+                ),
+                title: Text(
+                  'Recipe Page',
+                  style: FlutterFlowTheme.of(context).headlineMedium.override(
+                        fontFamily: 'Outfit',
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w600,
+                      ),
+                ),
+                actions: [
+                  FlutterFlowIconButton(
+                    borderColor:
+                        FlutterFlowTheme.of(context).secondaryBackground,
+                    borderRadius: 20,
+                    borderWidth: 1,
+                    buttonSize: 52,
+                    fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                    icon: Icon(
+                      Icons.favorite_sharp,
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      size: 24,
+                    ),
+                    onPressed: () {
+                      print('IconButton pressed ...');
+                    },
+                  ),
+                ],
+                centerTitle: true,
+                elevation: 2,
+              ),
+              body: SafeArea(
+                top: true,
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                  child: Container(
+                    width: 393,
+                    height: 764,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFEC33),
+                      borderRadius: BorderRadius.circular(40),
+                    ),
+                    child: SingleChildScrollView(
+                      controller: _model.columnController1,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(60),
+                              child: Image.asset(
+                                'assets/images/Strawberry-Cupcakes-Recipe-Card.jpg',
+                                width: 371,
+                                height: 215,
+                                fit: BoxFit.fitWidth,
+                              ),
+                            ).animateOnPageLoad(
+                                animationsMap['imageOnPageLoadAnimation']!),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Icon(
+                                  Icons.access_time,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 40,
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 30, 0),
+                                  child: Text(
+                                    '1/2 Hour',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.star_purple500_rounded,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 50,
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 30, 0),
+                                  child: Text(
+                                    '4.5',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.favorite_sharp,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 40,
+                                ),
+                                Text(
+                                  'Like',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                ),
+                              ]
+                                  .divide(SizedBox(width: 0))
+                                  .addToStart(SizedBox(width: 20)),
+                            ).animateOnPageLoad(
+                                animationsMap['rowOnPageLoadAnimation1']!),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      30, 0, 0, 0),
+                                  child: Text(
+                                    'Duration',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w800,
+                                        ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      35, 0, 0, 0),
+                                  child: Text(
+                                    '  Rating',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      20, 0, 0, 0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await _model.columnController2?.animateTo(
+                                        0,
+                                        duration: Duration(milliseconds: 1000),
+                                        curve: Curves.ease,
+                                      );
+                                    },
+                                    child: Text(
+                                      '20k Likes',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                              ]
+                                  .divide(SizedBox(width: 10))
+                                  .around(SizedBox(width: 10)),
+                            ).animateOnPageLoad(
+                                animationsMap['rowOnPageLoadAnimation2']!),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                            child: Container(
+                              width: 373,
+                              height: 616,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment:
+                                        AlignmentDirectional(0.00, -1.00),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 10, 0, 0),
+                                      child: Text(
+                                        'Ingredients',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 40,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment:
+                                        AlignmentDirectional(-0.01, -0.68),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          20, 70, 0, 0),
+                                      child: Text(
+                                        'For the Strawberry Cupcakes:\n\n1 1/2 cups all-purpose flour\n1 1/2 tsp baking powder\n1/4 tsp salt\n1/2 cup unsalted butter, softened\n1 cup granulated sugar\n2 large eggs\n1 tsp pure vanilla extract\n1/2 cup whole milk\n1/2 cup fresh strawberries, pureed (you can use a food processor)\nFor the Strawberry Frosting:\n\n1 cup unsalted butter, softened\n4 cups powdered sugar\n1/4 cup fresh strawberry puree\n1 tsp pure vanilla extract\nA pinch of salt\nFresh strawberries for garnish',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 20,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ).animateOnPageLoad(
+                                  animationsMap['stackOnPageLoadAnimation']!),
+                            ).animateOnPageLoad(
+                                animationsMap['containerOnPageLoadAnimation']!),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                            child: Container(
+                              width: 356,
+                              height: 382,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment:
+                                        AlignmentDirectional(1.67, -1.03),
+                                    child: SingleChildScrollView(
+                                      primary: false,
+                                      controller: _model.columnController2,
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Align(
+                                            alignment: AlignmentDirectional(
+                                                0.06, -0.87),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 20, 0, 0),
+                                              child: Text(
+                                                'About The Iteam',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          fontSize: 30,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                              ),
+                                            ),
+                                          ),
+                                          Align(
+                                            alignment: AlignmentDirectional(
+                                                -0.02, -0.68),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(20, 10, 0, 0),
+                                              child: Text(
+                                                'Strawberry cupcakes are a celebration of one of the most beloved and vibrant fruits. Their pink hue and fruity flavor make them a favorite for spring and summer gatherings. These cupcakes encompass everything there is to love about strawberries. The cake is moist and tender, and the frosting is sweet and filled with the essence of fresh strawberries.',
+                                                textAlign: TextAlign.start,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          fontSize: 20,
+                                                        ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ).animateOnPageLoad(animationsMap[
+                                        'columnOnPageLoadAnimation']!),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                            child: Container(
+                              width: 344,
+                              height: 294,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment:
+                                        AlignmentDirectional(0.00, -1.00),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 20, 0, 0),
+                                      child: Text(
+                                        'Video To Make Recipe',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 26,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(0.16, 0.56),
+                                    child: FlutterFlowYoutubePlayer(
+                                      url:
+                                          'https://www.youtube.com/watch?v=9-r3i2TKVdQ&pp=ygURU3RyYXdiZXJyeUN1cGNha2U%3D',
+                                      width: 306,
+                                      height: 212,
+                                      autoPlay: false,
+                                      looping: true,
+                                      mute: true,
+                                      showControls: true,
+                                      showFullScreen: true,
+                                      strictRelatedVideos: false,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                            child: Container(
+                              width: 421,
+                              height: 1625,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment:
+                                        AlignmentDirectional(0.00, -1.00),
+                                    child: Text(
+                                      'Steps To Make\nIngredent',
+                                      textAlign: TextAlign.center,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            fontSize: 40,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(0.00, 0.14),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          10, 50, 0, 0),
+                                      child: Text(
+                                        'For the Strawberry Cupcakes:\n\nPreheat your oven to 350°F (175°C) and line a muffin tin with cupcake liners.\n\nIn a mixing bowl, whisk together the flour, baking powder, and salt. Set this dry mixture aside.\n\nIn a separate bowl, cream together the softened butter and sugar until the mixture is light and fluffy.\n\nAdd the eggs one at a time, beating well after each addition. Stir in the vanilla extract.\n\nGradually add the dry mixture to the wet mixture, alternating with the milk. Begin and end with the dry mixture. Mix until just combined.\n\nFold in the strawberry puree. Your cupcake batter should have a lovely pink hue.\n\nDivide the batter evenly among the cupcake liners, filling each about two-thirds full.\n\nBake in the preheated oven for 18-20 minutes or until a toothpick inserted into the center of a cupcake comes out clean.\n\nAllow the cupcakes to cool in the pan for a few minutes before transferring them to a wire rack to cool completely.\n\nFor the Strawberry Frosting:\n\nIn a mixing bowl, beat the softened butter until it\'s creamy.\n\nGradually add the powdered sugar, strawberry puree, vanilla extract, and a pinch of salt. Beat until the frosting is smooth and fluffy. If needed, adjust the consistency with more sugar or puree.\n\nOnce the cupcakes are completely cool, use a piping bag or a spatula to frost them with the strawberry frosting.\n\nTop each cupcake with a fresh strawberry for garnish.\n\nServe and enjoy!',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 20,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          )),
+    );
+  }
+}

@@ -1,0 +1,593 @@
+import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/flutter_flow_youtube_player.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+import 'baguette_model.dart';
+export 'baguette_model.dart';
+
+class BaguetteWidget extends StatefulWidget {
+  const BaguetteWidget({Key? key}) : super(key: key);
+
+  @override
+  _BaguetteWidgetState createState() => _BaguetteWidgetState();
+}
+
+class _BaguetteWidgetState extends State<BaguetteWidget>
+    with TickerProviderStateMixin {
+  late BaguetteModel _model;
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = {
+    'imageOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        ScaleEffect(
+          curve: Curves.easeInOut,
+          delay: 2000.ms,
+          duration: 1400.ms,
+          begin: Offset(0, 0),
+          end: Offset(1, 1),
+        ),
+      ],
+    ),
+    'rowOnPageLoadAnimation1': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 2000.ms,
+          duration: 1180.ms,
+          begin: Offset(-800, 0),
+          end: Offset(0, 0),
+        ),
+      ],
+    ),
+    'rowOnPageLoadAnimation2': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 2000.ms,
+          duration: 860.ms,
+          begin: Offset(400, 0),
+          end: Offset(0, 0),
+        ),
+      ],
+    ),
+    'containerOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 2000.ms,
+          duration: 1050.ms,
+          begin: Offset(0, 400),
+          end: Offset(0, 0),
+        ),
+      ],
+    ),
+    'stackOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 3000.ms,
+          duration: 600.ms,
+          begin: 0,
+          end: 1,
+        ),
+      ],
+    ),
+    'columnOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 670.ms,
+          duration: 600.ms,
+          begin: 0,
+          end: 1,
+        ),
+      ],
+    ),
+  };
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => BaguetteModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    _model.dispose();
+
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
+    context.watch<FFAppState>();
+
+    return YoutubeFullScreenWrapper(
+      child: Title(
+          title: 'Baguette',
+          color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
+          child: GestureDetector(
+            onTap: () => _model.unfocusNode.canRequestFocus
+                ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+                : FocusScope.of(context).unfocus(),
+            child: Scaffold(
+              key: scaffoldKey,
+              backgroundColor: Color(0xFFF1F4F8),
+              appBar: AppBar(
+                backgroundColor:
+                    FlutterFlowTheme.of(context).secondaryBackground,
+                automaticallyImplyLeading: false,
+                leading: FlutterFlowIconButton(
+                  borderColor: Colors.transparent,
+                  borderRadius: 30,
+                  borderWidth: 1,
+                  buttonSize: 60,
+                  icon: Icon(
+                    Icons.chevron_left,
+                    color: FlutterFlowTheme.of(context).primaryText,
+                    size: 40,
+                  ),
+                  onPressed: () async {
+                    context.safePop();
+                  },
+                ),
+                title: Text(
+                  'Recipe Page',
+                  style: FlutterFlowTheme.of(context).headlineMedium.override(
+                        fontFamily: 'Outfit',
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w600,
+                      ),
+                ),
+                actions: [
+                  FlutterFlowIconButton(
+                    borderColor:
+                        FlutterFlowTheme.of(context).secondaryBackground,
+                    borderRadius: 20,
+                    borderWidth: 1,
+                    buttonSize: 52,
+                    fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                    icon: Icon(
+                      Icons.favorite_sharp,
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      size: 24,
+                    ),
+                    onPressed: () {
+                      print('IconButton pressed ...');
+                    },
+                  ),
+                ],
+                centerTitle: true,
+                elevation: 2,
+              ),
+              body: SafeArea(
+                top: true,
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                  child: Container(
+                    width: 393,
+                    height: 764,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFEC33),
+                      borderRadius: BorderRadius.circular(40),
+                    ),
+                    child: SingleChildScrollView(
+                      controller: _model.columnController1,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(60),
+                              child: Image.asset(
+                                'assets/images/download_(9).jpg',
+                                width: 371,
+                                height: 272,
+                                fit: BoxFit.fitWidth,
+                              ),
+                            ).animateOnPageLoad(
+                                animationsMap['imageOnPageLoadAnimation']!),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Icon(
+                                  Icons.access_time,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 40,
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 30, 0),
+                                  child: Text(
+                                    '1/2 Hour',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.star_purple500_rounded,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 50,
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 30, 0),
+                                  child: Text(
+                                    '4.5',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.favorite_sharp,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 40,
+                                ),
+                                Text(
+                                  'Like',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                ),
+                              ]
+                                  .divide(SizedBox(width: 0))
+                                  .addToStart(SizedBox(width: 20)),
+                            ).animateOnPageLoad(
+                                animationsMap['rowOnPageLoadAnimation1']!),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      30, 0, 0, 0),
+                                  child: Text(
+                                    'Duration',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w800,
+                                        ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      35, 0, 0, 0),
+                                  child: Text(
+                                    '  Rating',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      20, 0, 0, 0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await _model.columnController2?.animateTo(
+                                        0,
+                                        duration: Duration(milliseconds: 1000),
+                                        curve: Curves.ease,
+                                      );
+                                    },
+                                    child: Text(
+                                      '20k Likes',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                              ]
+                                  .divide(SizedBox(width: 10))
+                                  .around(SizedBox(width: 10)),
+                            ).animateOnPageLoad(
+                                animationsMap['rowOnPageLoadAnimation2']!),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                            child: Container(
+                              width: 373,
+                              height: 518,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment:
+                                        AlignmentDirectional(0.00, -1.00),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 10, 0, 0),
+                                      child: Text(
+                                        'Ingredients',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 40,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment:
+                                        AlignmentDirectional(-0.01, -0.68),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          20, 70, 0, 0),
+                                      child: Text(
+                                        '1. 500 grams (about 3 1/3 cups) of bread flour\n\n2. 10 grams (2 teaspoons) of salt\n\n3. 7 grams (1 packet) of active dry yeast\n\n4. 350 milliliters (about 1 1/2 cups) of warm water',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 30,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ).animateOnPageLoad(
+                                  animationsMap['stackOnPageLoadAnimation']!),
+                            ).animateOnPageLoad(
+                                animationsMap['containerOnPageLoadAnimation']!),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                            child: Container(
+                              width: 356,
+                              height: 292,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment:
+                                        AlignmentDirectional(1.67, -1.03),
+                                    child: SingleChildScrollView(
+                                      primary: false,
+                                      controller: _model.columnController2,
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Align(
+                                            alignment: AlignmentDirectional(
+                                                0.06, -0.87),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 20, 0, 0),
+                                              child: Text(
+                                                'About The Iteam',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          fontSize: 30,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                              ),
+                                            ),
+                                          ),
+                                          Align(
+                                            alignment: AlignmentDirectional(
+                                                -0.02, -0.68),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(20, 10, 0, 0),
+                                              child: Text(
+                                                '\nA baguette is a classic French bread known for its long, thin shape and crisp, golden-brown crust. It\'s one of the most iconic and beloved types of bread worldwide. Here\'s some more information about the baguette:',
+                                                textAlign: TextAlign.start,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          fontSize: 20,
+                                                        ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ).animateOnPageLoad(animationsMap[
+                                        'columnOnPageLoadAnimation']!),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                            child: Container(
+                              width: 344,
+                              height: 294,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment:
+                                        AlignmentDirectional(0.00, -1.00),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 20, 0, 0),
+                                      child: Text(
+                                        'Video To Make Recipe',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 26,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(0.16, 0.56),
+                                    child: FlutterFlowYoutubePlayer(
+                                      url:
+                                          'https://www.youtube.com/watch?v=5FR__Gt0CSo&pp=ygUeQmFndWV0dGUgcmVjaXBlIG1hZHJhcyBzYW1heWFs',
+                                      width: 306,
+                                      height: 212,
+                                      autoPlay: false,
+                                      looping: true,
+                                      mute: true,
+                                      showControls: true,
+                                      showFullScreen: true,
+                                      strictRelatedVideos: false,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                            child: Container(
+                              width: 421,
+                              height: 1978,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment:
+                                        AlignmentDirectional(0.00, -1.00),
+                                    child: Text(
+                                      'Steps To Make\nIngredent',
+                                      textAlign: TextAlign.center,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            fontSize: 40,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment:
+                                        AlignmentDirectional(0.00, -8.28),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          10, 130, 0, 0),
+                                      child: Text(
+                                        'Activate the Yeast:\n\nIn a small bowl, add the active dry yeast to the warm water. Stir gently and let it sit for about 5-10 minutes until it becomes frothy. This indicates that the yeast is activated.\nCombine Dry Ingredients:\n\nIn a large mixing bowl, combine the bread flour and salt. Make a well in the center.\nMix the Dough:\n\nPour the activated yeast mixture into the well you created in the dry ingredients. Stir with a wooden spoon or your hands until a dough begins to form.\nKnead the Dough:\n\nTurn the dough out onto a lightly floured surface. Knead it for about 10-15 minutes until it\'s smooth and elastic. You can add a little extra flour if the dough is too sticky.\nFirst Rise:\n\nPlace the dough in a clean, lightly greased bowl. Cover it with a kitchen towel or plastic wrap. Allow it to rise for 1-2 hours, or until it has doubled in size.\nPunch Down the Dough:\n\nAfter the first rise, punch down the dough to remove excess air. Knead it briefly on a floured surface.\nShape the Baguette:\n\nDivide the dough into two equal portions. Shape each portion into a long, slender log, about 24-30 inches (60-75 centimeters) in length. You can do this by gently rolling the dough and tapering the ends.\nSecond Rise:\n\nPlace the shaped baguettes onto a baking sheet or baguette pan. Cover them and let them rise for another 30 minutes to 1 hour.\nPreheat the Oven:\n\nPreheat your oven to 450°F (230°C) while the baguettes are rising.\nScore the Baguettes:\n\nUsing a sharp knife or a razor blade, make diagonal slashes (about 1/4 inch deep) along the top of each baguette. This helps the bread expand while baking.\nBake:\n\nPlace the baguettes in the preheated oven and bake for 15-20 minutes or until they are golden brown and sound hollow when tapped on the bottom.\nCool:\n\nRemove the baguettes from the oven and let them cool on a wire rack. Allow them to cool for about 30 minutes before slicing and serving.',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 20,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          )),
+    );
+  }
+}
