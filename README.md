@@ -18,4 +18,4 @@ Check out our demo video to witness the magic in action! See how Recipe App make
 
 ## Get Started
 
-Transform your kitchen into a haven of culinary creativity with [Your App Name]. Download now and embark on a culinary adventure that promises to tantalize your taste buds and elevate your cooking experience! 📲 [Download Now Button]
+Transform your kitchen into a haven of culinary creativity with Recipe App. Download now and embark on a culinary adventure that promises to tantalize your taste buds and elevate your cooking experience! 📲
