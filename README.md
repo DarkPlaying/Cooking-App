@@ -16,7 +16,9 @@ Welcome to  Recipe App, your ultimate culinary companion! 🌟 This recipe app i
 
 [![Watch the demo](https://img.youtube.com/vi/zpg9dwTJI2o/maxresdefault.jpg)](https://www.youtube.com/watch?v=zpg9dwTJI2o)
 
-Check out our demo video to witness the magic in action! See how Recipe App makes cooking enjoyable and stress-free. 🎥 [Include a link to your demo video here.]
+Check out our demo video to witness the magic in action! See how Recipe App makes cooking enjoyable and stress-free. 🎥 
+[Include a link to your demo video here.]
+
 link -> https://github.com/DarkPlaying/Cooking-App/blob/main/video_2023-12-06T19.03.48%5B1%5D.mp4
 
 ## Get Started
